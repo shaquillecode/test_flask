@@ -1,21 +1,17 @@
+'''jinja_sun.py'''
 from flask import Flask, render_template
-import os
 
-# Display the contents of sun.csv in table format
-# Display only the first 20 dates of trade date, closing price ,
-# and volume
-
+# I will display the contents of sun.csv in table format
+# I will display only the trade date, closing price, and volume
 app = Flask(__name__)
 
-os.chdir("/Users/shaq/Desktop/Django/")
+x = "SUN.CSV"
 
-x = "SUN1.CSV"
-
-@app.route("/csv")
+@app.route("/")
 def template_csv():
-    return render_template('sun.html', my_string= "Stock Information", csv = csvReader(x)) 
+    return render_template('sun.html', my_string= "Stock Information", csv = csvReader(x))
 
-def csvReader(x):   
+def csvReader(x):
     cnt = 0
     with open(f"{x}", "r") as data:
         sun = []
@@ -23,7 +19,7 @@ def csvReader(x):
         # print(row)
         while len(row) > cnt:
             sun.append(row)
-            row = data.readline().strip("\n").split(",")            
+            row = data.readline().strip("\n").split(",")
             cnt += 1
         # print(sun)
     return sun

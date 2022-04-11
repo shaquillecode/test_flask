@@ -1,15 +1,17 @@
+'''jinja_nato.py'''
 from flask import Flask, render_template
 
 
 app = Flask(__name__)
 
-@app.route("/nato")
+@app.route("/")
 def template_nato():
-    return render_template('nato.html', my_string= "NATO", nato = get_nato()) 
+    '''template_nato'''
+    return render_template('nato.html', my_string= "Year Countries join NATO", nato = get_nato())
 
 
-# Code Here!
 def get_nato():
+    '''get_nato'''
     with open('nato.txt','r') as line:
         countries = []
         country = line.readline().strip("\n").split(",")

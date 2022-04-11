@@ -1,17 +1,19 @@
+"""jinja_states.py"""
 from flask import Flask, render_template
+
 app = Flask(__name__)
 
 
-@app.route("/states")
+@app.route("/")
 def template_test():
-    return render_template('jinja_states.html', my_string="US States", states=get_states()
+    '''template_test'''
+    return render_template('states.html', my_string="US States", states=get_states()
 )
 
-
-# Code Here!
 def get_states():
+    '''get_states'''
     states = []
-    with open('US_states_codes.txt','r') as file:
+    with open('states.txt','r') as file:
         line = file.readline()
         # print(line)
         while line:
