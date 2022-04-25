@@ -21,7 +21,7 @@ retreive the symbol, date, closing price and volume using SQLAlchemy <br>
 returned in json format<br>'''
 
 Base = declarative_base()   # All clases inherit from here
- 
+
 class StockData(Base):
     __tablename__ = 'security_master'     # REQUIRED !!!!!!!!
     id = Column(Integer, primary_key=True)      # Every table must have a primary key
@@ -54,7 +54,7 @@ def docWriter(x, y):
 def csvReader(x):
     engine = create_engine('sqlite:///CI_trades.db')
     DBSession = sessionmaker(bind=engine)
-    session = DBSession()   
+    session = DBSession()
     cnt = 0
     with open(f"{x}", "r") as data:
         row = data.readline().strip("\n").split(",")

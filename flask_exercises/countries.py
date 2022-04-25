@@ -1,3 +1,4 @@
+'''Create a database'''
 import sqlite3
 from flask import Flask,render_template
 
@@ -16,7 +17,7 @@ app = Flask(__name__)
 # - print "The capital of XX is YY"<br>
 # - print "The capital for XX was not found"<br>
 
-conn = sqlite3.connect('countries.db') 
+conn = sqlite3.connect('countries.db')
 curr = conn.cursor()
 
 # curr.execute("""DROP TABLE country_info""")
@@ -45,7 +46,7 @@ with open('countries.txt') as fh:
         else:
             currency = ''.join([ x.strip("'").strip('\n').strip('"') for x in currency])
         # print(country,capital,currency)
-        curr.execute(f"""INSERT INTO country_info (country,capital,currency) 
+        curr.execute(f"""INSERT INTO country_info (country,capital,currency)
         VALUES ('{country}','{capital}','{currency}');""")
         conn.commit()
         line = fh.readline()
@@ -72,7 +73,7 @@ def get_currency(name):
 def get_capital(name):
     conn = sqlite3.connect('countries.db')
     curr = conn.cursor()
-    
+
     try:
         curr.execute("SELECT * FROM country_info WHERE country = '{0}'".format(name))
         capital = curr.fetchone()[1]
@@ -85,7 +86,7 @@ def get_capital(name):
 def get_capital_currency(name):
     conn = sqlite3.connect('countries.db')
     curr = conn.cursor()
-    
+
     try:
         curr.execute("SELECT * FROM country_info WHERE country = '{0}'".format(name))
         capital = curr.fetchone()[1]
